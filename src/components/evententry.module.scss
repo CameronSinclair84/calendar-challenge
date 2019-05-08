@@ -1,0 +1,75 @@
+.eventInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: solid 2px black;
+  height: 240px;
+  width: 300px;
+  background-color: rgb(114, 164, 197);
+  margin: 20px;
+  border-radius: 20px;
+  &:hover {
+    background-color: rgb(70, 145, 196);
+    cursor: pointer;
+  }
+}
+
+.eventInfoClicked {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: solid 2px red;
+  height: 240px;
+  width: 300px;
+  background-color: rgb(41, 118, 170);
+  margin: 20px;
+  border-radius: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.eventTitle {
+  //border: solid 1px red;
+  display: flex;
+  justify-content: space-between;
+  height: 120px;
+  margin: 10px;
+  font-weight: 800;
+}
+
+.title {
+  display: flex;
+  margin: 5px;
+  height: 100%;
+  width: 100%;
+  //background-color: green;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.description {
+  padding: 0px 10px;
+  height: 120px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

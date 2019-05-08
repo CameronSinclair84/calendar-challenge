@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 70px;
+  background-color: white;
+  border-bottom: 2px solid black;
+  z-index: 1;
+}
+
+.logo {
+  padding-left: 40px;
+  display: flex;
+  height: 70px;
+  align-items: center;
+}
+
+.select {
+  font-weight: 800;
+  margin: 20px;
+  margin-left: 60px;
+  width: 200px;
+  input {
+    padding: 2px;
+    border: solid 2px black;
+    font-weight: 700;
+  }
+}
+
+.eventcontainer {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: #626c7c;
+  position: absolute;
+  top: 70px;
+}
