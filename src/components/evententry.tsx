@@ -25,13 +25,12 @@ class EventEntry extends React.PureComponent<
     //   isClicked: false
   };
 
-  //   public componentDidUpdate(prevProps: IReactProps & IReduxProps) {
-  //     if (this.props !== prevProps) {
-  //       this.setState({
-  //         filteredList: this.props.cards.filter(this.filterCards)
-  //       });
-  //     }
-  //   }
+  public componentDidUpdate(prevProps: IReduxProps) {
+    if (this.props.selectedEvents !== prevProps.selectedEvents) {
+      console.log("props changed");
+      this.forceUpdate();
+    }
+  }
 
   public handleClick = () => {
     this.props.toggleEvent(this.props.calendarEvent);

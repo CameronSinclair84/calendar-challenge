@@ -70,16 +70,17 @@ export const toggleEvent = (evt: ICalendarEvents) => (
   getState: any
 ) => {
   const currentState: IStore = getState();
-  let events: ICalendarEvents[] = currentState.calendar.mySelectedEvents;
+  let selectedEvents: ICalendarEvents[] =
+    currentState.calendar.mySelectedEvents;
 
-  let index = events.indexOf(evt);
+  let index = selectedEvents.indexOf(evt);
   if (index === -1) {
-    events.push(evt);
+    selectedEvents.push(evt);
   } else {
-    events.splice(index, 1);
+    selectedEvents.splice(index, 1);
   }
 
-  dispatch(toggleSelectedEvent(events));
+  dispatch(toggleSelectedEvent(selectedEvents));
 };
 
 // action interfaces

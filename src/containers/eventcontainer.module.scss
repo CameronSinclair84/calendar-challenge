@@ -1,6 +1,8 @@
 .header {
   display: flex;
+  // flex-wrap: wrap;
   justify-content: flex-start;
+  align-content: center;
   align-items: center;
   position: fixed;
   top: 0px;
@@ -22,8 +24,8 @@
 .select {
   font-weight: 800;
   margin: 20px;
-  margin-left: 60px;
-  width: 200px;
+  margin-left: 20px;
+  width: 250px;
   input {
     padding: 2px;
     border: solid 2px black;
@@ -40,4 +42,22 @@
   background-color: #626c7c;
   position: absolute;
   top: 70px;
+}
+
+@media only screen and (max-width: 850px) {
+  .header {
+    height: 300px;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .eventcontainer {
+    top: 300px;
+  }
+
+  .select {
+    width: 400px;
+    input {
+      margin-left: 10px;
+    }
+  }
 }

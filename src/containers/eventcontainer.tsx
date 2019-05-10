@@ -18,7 +18,6 @@ export interface IState {
   startDate: Date;
   endDate: Date;
   filteredEvents: ICalendarEvents[];
-  firstLoad: boolean;
   searchText: string;
 }
 
@@ -28,7 +27,6 @@ class EventContainer extends React.Component<
 > {
   public state = {
     searchText: "",
-    firstLoad: true,
     filteredEvents: this.props.allEvents,
     startDate: new Date(
       new Date(new Date().getFullYear(), 0, 1).setHours(0, 0, 0, 0)
@@ -40,10 +38,17 @@ class EventContainer extends React.Component<
     this.props.fetchCalendar();
   };
 
+  public componentDidUpdate(prevProps: IReduxProps & IReactProps) {
+    if (this.props.allEvents !== prevProps.allEvents) {
+      console.log("props changed");
+      this.sortEvents();
+      this.setState({ filteredEvents: this.props.allEvents });
+    }
+  }
+
   public handleStartDateChange = (evt: any) => {
     this.setState(
       {
-        firstLoad: false,
         startDate: new Date(new Date(evt).setHours(0, 0, 0, 0))
       },
       () =>
@@ -58,7 +63,6 @@ class EventContainer extends React.Component<
   public handleEndDateChange = (evt: any) => {
     this.setState(
       {
-        firstLoad: false,
         endDate: new Date(new Date(evt).setHours(23, 59, 59, 0))
       },
       () =>
@@ -73,7 +77,6 @@ class EventContainer extends React.Component<
   public handleSearchChange = (evt: any) => {
     this.setState(
       {
-        firstLoad: false,
         searchText: evt.target.value
       },
       () =>
@@ -126,19 +129,9 @@ class EventContainer extends React.Component<
   };
 
   public render() {
-    // Sort events into correct date order, do this the first time only
-    console.log(this.props.allEvents);
-    if (this.state.firstLoad) {
-      this.sortEvents();
-    }
-
-    const displayEvents = this.state.firstLoad
-      ? this.props.allEvents.map((eachEvent, index) => (
-          <EventEntry key={index} calendarEvent={eachEvent} />
-        ))
-      : this.state.filteredEvents.map((eachEvent, index) => (
-          <EventEntry key={index} calendarEvent={eachEvent} />
-        ));
+    const displayEvents = this.state.filteredEvents.map((eachEvent, index) => (
+      <EventEntry key={index} calendarEvent={eachEvent} />
+    ));
 
     return (
       <React.Fragment>
@@ -147,14 +140,14 @@ class EventContainer extends React.Component<
             <img src={logo} height="50px" />
           </div>
           <div className={styles.select}>
-            Select Start Date:
+            Showing Events After:
             <DatePicker
               selected={this.state.startDate}
               onChange={this.handleStartDateChange}
             />
           </div>
           <div className={styles.select}>
-            Select End Date:
+            Showing Events Before:
             <DatePicker
               selected={this.state.endDate}
               onChange={this.handleEndDateChange}
